@@ -263,12 +263,12 @@ class KHostApduService : HostApduService() {
         return result
     }
 
-    fun createTextRecord(language: String, text: String, id: ByteArray): NdefRecord {
+    fun createTextRecord(language: String, text: String?, id: ByteArray): NdefRecord {
         val languageBytes: ByteArray
         val textBytes: ByteArray
         try {
             languageBytes = language.toByteArray(charset("US-ASCII"))
-            textBytes = text.toByteArray(charset("UTF-8"))
+            textBytes = text!!.toByteArray(charset("UTF-8"))
         } catch (e: UnsupportedEncodingException) {
             throw AssertionError(e)
         }
